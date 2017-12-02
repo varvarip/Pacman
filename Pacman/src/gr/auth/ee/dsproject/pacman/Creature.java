@@ -57,8 +57,8 @@ public class Creature implements gr.auth.ee.dsproject.pacman.AbstractCreature
   }
   
 
-  // баябаяиццос иыаммгс		8782	6930413691	varvarip@ece.auth.gr
-  // бекемтфас иасым-цеыяциос	8785	6944144933	velentzas@ece.auth.gr
+  // VARVARINGOS IOANNIS		8782	6930413691	varvarip@ece.auth.gr
+  // VELENTZAS IASON-GEORGIOS	8785	6944144933	velentzas@ece.auth.gr
   
   
   /* calculateNextGhostPosition() is a method used in the game to calculate the random, but allowed moves the ghosts will implement.
