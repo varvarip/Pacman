@@ -30,12 +30,12 @@ public class Node87828785
 	  
   }
   
-  public Node87828785 (int pacX, int pacY, int pacNext, double ev, Room[][] Maze) {
+  public Node87828785 (int pacX, int pacY, int pacNext, Room[][] Maze) {
 	  
 	  nodeX = pacX;
 	  nodeY = pacY;
 	  nodeMove = pacNext;
-	  nodeEvaluation = ev;
+	  nodeEvaluation = evaluate(Maze);
 	  currentGhostPos = findGhosts(Maze);
 	  flagPos = findFlags(Maze);
 	  currentFlagStatus = checkFlags(Maze);
