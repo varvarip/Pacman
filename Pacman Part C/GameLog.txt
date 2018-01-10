@@ -1,0 +1,5 @@
+Team 0.00	Mine	0	Team 0.00	Mine	1	4
+Team 0.00	Mine	0	Team 0.00	Mine	1	4
+Team 0.00	Mine	0	Team 0.00	Mine	1	25
+Team 0.00	Mine	0	Team 0.00	Mine	1	25
+Team 0.00	Mine	0	Team 0.00	Mine	1	11
