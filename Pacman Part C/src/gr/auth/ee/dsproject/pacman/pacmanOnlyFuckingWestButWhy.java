@@ -41,21 +41,25 @@ public class Creature implements gr.auth.ee.dsproject.pacman.AbstractCreature
 
   }
 
-  public ArrayList<ArrayList<Node>> nodeArray = new ArrayList<ArrayList<Node>>();
-  public ArrayList<Node> punk = new ArrayList<Node>();
+
   
   public int calculateNextPacmanPosition (Room[][] Maze, int[] currPosition)
   {
-    Node parentNode = new Node(currPosition[0], currPosition[1], -1, 0, Maze);
+	  
+    Node parentNode = new Node(currPosition[0], currPosition[1], -1, 0, null, null, Maze);
     createSubTreePacman(1, parentNode,Maze,currPosition);
-    for(int i =0; i<nodeArray.size(); i++) {
-    	double min = nodeArray.get(i).get(0).getEvaluate();
-    	for(int j=0; j<nodeArray.get(i).size(); j++) {    		
-    		if(min > nodeArray.get(i).get(j).getEvaluate()) {
-    			min = nodeArray.get(i).get(j).getEvaluate();
+    
+    
+    
+    
+    for(int i =0; i<parentNode.getChildren().size(); i++) {
+    	double min = parentNode.getChildren().get(i).getChildren().get(0).getEvaluate();
+    	for(int j=0; j<parentNode.getChildren().get(i).getChildren().size(); j++) {    		
+    		if(min > parentNode.getChildren().get(i).getChildren().get(j).getEvaluate()) {
+    			min = parentNode.getChildren().get(i).getChildren().get(j).getEvaluate();
     		}
     	}
-    	double[] leaveMin = new double[nodeArray.size()];
+    	double[] leaveMin = new double[parentNode.getChildren().size()];
     	leaveMin[i] = min;
     	
     	int direction = 0;
@@ -133,13 +137,12 @@ public class Creature implements gr.auth.ee.dsproject.pacman.AbstractCreature
 			
 			PacmanUtilities.movePacman(roomCopy1, currPacmanPosition, newPacPos);
 			
-			Node istChildNode = new Node(newPacPos[0], newPacPos[1],-1,depth,roomCopy1);
+			Node istChildNode = new Node(newPacPos[0], newPacPos[1],-1,depth,parent, null, roomCopy1);
 			
-			parent.getChildren().add(i,istChildNode);
+			parent.getChildren().add(validMoves.get(i).getNodeMove(),istChildNode);
 			
 			createSubTreeGhosts(depth+1,istChildNode,roomCopy1,istChildNode.getGhostPos());
-			
-			nodeArray.add(validMoves.get(i).getNodeMove(),punk);			
+					
 		}
     
 
@@ -153,9 +156,9 @@ public class Creature implements gr.auth.ee.dsproject.pacman.AbstractCreature
 	  for(int i=0; i<ghostMovesArray.size(); i++) {
 		  Room[][] roomCopy2 = PacmanUtilities.copy(Maze);
 		  PacmanUtilities.moveGhosts(roomCopy2, currGhostsPosition, ghostMovesArray.get(i));
-		  Node istNode = new Node(parent.getNodeX(), parent.getNodeY(), -1, depth, roomCopy2);
-		  punk.add(i, istNode); 
-		  
+		  Node istNode = new Node(parent.getNodeX(), parent.getNodeY(), -1, depth, parent, null, roomCopy2);
+		  parent.getChildren().add(i, istNode);
+		 	  
 	  }	 
   }
   
