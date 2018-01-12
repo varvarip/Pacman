@@ -64,12 +64,14 @@ public class Node
 	  	nodeEvaluation= evaluate();
 }
   
-  public Node (int x, int y, int d, int deep, Room[][] Maze) {
+  public Node (int x, int y, int d, int deep, Node par, ArrayList<Node> child, Room[][] Maze) {
 
 	  	nodeX=x;
 	  	nodeY=y;
 	  	nodeMove = d;
 	  	depth = deep;
+	  	parent = par;
+	  	children = child;
 	  	currentGhostPos=findGhosts(Maze);
 	  	flagPos=findFlags(Maze);
 	  	currentFlagStatus=checkFlags(Maze);
@@ -82,6 +84,7 @@ public class Node
 		
 }
 
+ 
   ///////////// FIND GHOSTS //////////////////////
   private int[][] findGhosts (Room[][] Maze)
   {
